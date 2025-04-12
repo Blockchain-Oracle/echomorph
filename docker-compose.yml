@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  echomorph:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # For development, mount the code to allow live changes
+      - ./model_processor:/app/model_processor
+      - ./agent-processor:/app/agent-processor
+      - ./resources:/app/resources
+    environment:
+      - TWITTER_USERNAME=${TWITTER_USERNAME}
+      - TWITTER_PASSWORD=${TWITTER_PASSWORD}
+      - TWITTER_EMAIL=${TWITTER_EMAIL}
+    # If you need to debug interactively
+    # command: /bin/bash
+    # stdin_open: true
+    # tty: true 
